@@ -13,10 +13,11 @@ BiblioPixel has some snappy features:
 * ...but it's also easy to write your own animations, drivers and layouts.
 * There's a high-performance WebGL visualizer
 * ...and you can also make animated GIFs to send to your friends.
-* BiblioPixel uses high-performance [``numpy``](http://www.numpy.org/) arithmetic...
+* BiblioPixel uses high-performance [``numpy``](http://www.numpy.org/)
+  arithmetic...
 * ...but interoperates nicely with plain old lists.
-* There's event handling which can connect any control to
-  any animation without programming.
+* There's event handling which can connect any control to any animation
+  without programming.
 * ...and many more
 
 ## This documentation
@@ -41,6 +42,7 @@ Finally, there's an example of how to put a Project together from scratch.
 * Using the `bp` command-line program
 * How to write your own ``Animation`` class
 * How to use ``numpy``
+* How to use controls
 
-The **Reference** section contains a glossary, and then automatically-generated
+The **Reference** section contains a glossary, and automatically-generated
 API documentation.
