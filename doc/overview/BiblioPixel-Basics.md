@@ -6,7 +6,7 @@ A Python command line program named `bp` runs a JSON document called a Project
 which contains information about your lighting hardware, how your lights are
 laid out, and how you want to animate them.
 
-Here's an explanation of the parts of that sentence!
+Details follow!
 
 ## JSON
 
@@ -14,7 +14,7 @@ JSON is a simple and very popular way to represent structured data as text.
 
 [Here's](https://www.digitalocean.com/community/tutorials/an-introduction-to-json)
 a nice little introduction to JSON, and [here's](https://json.org) the full
-specification of the fromat, which isn't very long.
+specification of the fromat, which isn't very long at all.
 
 ## The command line
 

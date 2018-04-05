@@ -1,21 +1,55 @@
-# Welcome to BiblioPixel
+# Welcome to BiblioPixel!
 
-BiblioPixel is a pure Python 3 library for all your LED animations
-needs. Through its fully output agnostic design you can write your code
-once and use it on a huge variety of outputs, from LED strips to cubes
-and even a high performance LED simulator!
+BiblioPixel is a free and open-source Python program for real-time animation of
+lights of all types, often strips of LEDS, which allows people to share
+lighting animations they have created.
 
-BiblioPixel allows many different display geometries. Many of the
-existing hardware models are LED strips, matrixes or circles, but there
-are no real limits on what the output device can be, due to the output
-drivers model.
+## Features
 
-Contents
---------
+BiblioPixel has some snappy features:
 
-* [bp Command](bp-Command.md)
-* [Aliases and Defaults](Aliases-and-defaults.md)
+* It has drivers for almost every popular LED strip, and many other lights.
+* Animations can be put together without any programming...
+* ...but it's also easy to write your own animations, drivers and layouts.
+* There's a high-performance WebGL visualizer
+* ...and you can also make animated GIFs to send to your friends.
+* BiblioPixel uses high-performance [``numpy``](http://www.numpy.org/)
+  arithmetic...
+* ...but interoperates nicely with plain old lists.
+* There's event handling which can connect any control to any animation
+  without programming.
+* ...and many more
 
-## Getting Started
+## This documentation
 
-Read the Docs
+The documentation is divided into three parts:
+
+1. **Overview**
+2. **Topic articles**
+3. **Reference**
+
+The **Overview** contains:
+
+* [BiblioPixel Basics](overview/BiblioPixel-Basics.md)
+* [How To Install BiblioPixel](overview/How-To-Install-BiblioPixel.md)
+* [How to make a Project](overview/How-to-make-a-Project.md)
+* [Parts of a Project](overview/Parts-of-a-Project.md)
+
+how to install BiblioPixel and then has a high-level
+explanation of how BiblioPixel works and what goes into a BiblioPixel project.
+
+Then it drills down into the specific parts of a Project and how they are put
+together.
+
+Finally, there's an example of how to put a Project together from scratch.
+
+**Topic Articles** are individual articles about specific topics:
+
+* Troubleshooting a BiblioPixel project
+* Using the `bp` command-line program
+* How to write your own ``Animation`` class
+* How to use ``numpy``
+* How to use controls
+
+The **Reference** section contains a glossary, and automatically-generated
+API documentation.
