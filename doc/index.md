@@ -38,10 +38,11 @@ The documentation is divided into three parts:
 
 The **Overview** contains:
 
-* [BiblioPixel Basics](BiblioPixel-Basics.md)
-* [How To Install BiblioPixel](How-To-Install-BiblioPixel.md)
-* [How to make a Project](How-to-make-a-Project.md)
-* [Parts of a Project](Parts-of-a-Project.md)
+* [Immediate Gratification](overview/Immediate-Gratification.md)
+* [BiblioPixel Basics](overview/BiblioPixel-Basics.md)
+* [How To Install BiblioPixel](overview/How-To-Install-BiblioPixel.md)
+* [How to make a Project](overview/How-to-make-a-Project.md)
+* [Parts of a Project](overview/Parts-of-a-Project.md)
 
 how to install BiblioPixel and then has a high-level
 explanation of how BiblioPixel works and what goes into a BiblioPixel project.
