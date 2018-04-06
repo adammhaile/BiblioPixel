@@ -1,20 +1,28 @@
 # BiblioPixel Basics
 
-## BiblioPixel in one sentence
+## What is BiblioPixel
 
-A Python command line program named `bp` runs a JSON document called a Project
-which contains information about your lighting hardware, how your lights are
-laid out, and how you want to animate them.
+In the BiblioPixel Light Programming System, Python command line program named
+`bp` runs a JSON document called a Project which contains information about
+your lighting hardware, how your lights are laid out, and how you want to
+animate them - as well as an excellent visualizer for LED systems.
 
-Details follow!
+Let's go through what all of this means.
 
 ## JSON
 
-JSON is a simple and very popular way to represent structured data as text.
+JSON is a simple and very popular way to represent structured data in
+human-readable and editable text.
 
 [Here's](https://www.digitalocean.com/community/tutorials/an-introduction-to-json)
 a nice little introduction to JSON, and [here's](https://json.org) the full
-specification of the fromat, which isn't very long at all.
+specification of the format, which isn't very long at all.
+
+## The visualizer: SimPixel
+
+BiblioPixel has a sibling project, SimPixel, which lets you preview your
+lighting animations in any modern browser.  This is extremely convenient as it
+allows you develop animat
 
 ## The command line
 
