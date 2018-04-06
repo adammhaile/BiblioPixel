@@ -4,4 +4,4 @@ from bibliopixel.main import commands
 
 
 if __name__ == '__main__':
-    commands.extract_help('doc/bp-Command.md')
+    commands.extract_help('doc/reference/bp-Command.md')
