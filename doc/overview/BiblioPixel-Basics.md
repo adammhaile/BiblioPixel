@@ -22,12 +22,13 @@ specification of the format, which isn't very long at all.
 
 BiblioPixel has a sibling project, SimPixel, which lets you preview your
 lighting animations in any modern browser.  This is extremely convenient as it
-allows you develop animat
+allows you develop and test animations in your browser and then deploy them to
+your hardware installation when you know they are ready.
 
 ## The command line
 
 BiblioPixel does not have a graphical user interface - it is a command line
-program where you type commands at the terminal.
+program where you type commands at the command line in a terminal.
 
 On Linux or MacOS, you need to run a program called Terminal comes with the
 computer.  On Windows, it's [TBD].
