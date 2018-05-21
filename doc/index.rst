@@ -14,7 +14,8 @@ BiblioPixel has some snappy features:
 
 * Animations can be put together without any programming...
 
-* ...but it's also easy to write your own animations, drivers and layouts.
+* ...but it's also easy to write your own animations, drivers and layouts
+  in Python.
 
 * There's a high-performance WebGL visualizer
 
@@ -23,12 +24,12 @@ BiblioPixel has some snappy features:
 * BiblioPixel uses high-performance [``numpy``](http://www.numpy.org/)
   arithmetic...
 
-* ...but interoperates nicely with plain old lists.
+* ...but interoperates nicely with plain old Python lists.
 
 * There's event handling which can connect any control to any animation
   without programming.
 
-* ...and many more
+* ...and much more...
 
 ## This documentation
 
