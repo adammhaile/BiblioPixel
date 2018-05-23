@@ -50,9 +50,15 @@ list: for example:
 
 sets the first four colors of a color list to yellow, red, green and blue.
 
+Unlike classic lists, you can write over components in a color_list:
+
+```
+    numpy_list[0][0] = 0
+    # classic_list[0][0] = 0    # Can't modify a tuple!  throws a TypeError.
+```
+
 Where `numpy` disinguishes itself is operations that apply to all the colors at
-once.  Suppose you want to reduce the intensity of each color you just created
-by 50%:
+once.  To reduce the intensity of each color just created by 50%:
 
 ```
     for i, (r, g, b) in enumerate(classic):
@@ -61,11 +67,27 @@ by 50%:
      # Much easier:
      numpy_list /= 2
 
-    # You can do complex things like this:
-    numpy_list = (2 * list_1 + 3 * list_2) ** 2.5
-    # and it will do all the operations on a component by coim
 ```
 
+It works even better if you have multiple lists - you can do slick things like:
+`numpy_list = (2 * list_1 + 3 * list_2) ** 2.5`
+
+
+## Be careful:  references can be tricky
+
+Unlike classic lists, if you extract a color from a `numpy` color list and then
+modify it, the original list is also changed!
+
+```
+    numpy_list[:] = COLORS.red, COLORS.green, COLORS.blue
+
+    color = numpy_list[0]
+
+    # later
+    color[0] = 0
+
+    numpy_list[0]  # Now it's black!
+```
 
 ## How to get your BiblioPixel Animation to use `numpy` lists.
 
