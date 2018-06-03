@@ -45,7 +45,7 @@ Example: the same project in JSON
         }
     }
 
-## A project file is divided into class sections and value sections.
+## A project file is has class sections and value sections.
 
 In the project files above, there are three sections - `shape`, `run`,
 and `animation`.
@@ -68,7 +68,7 @@ your own code or third party code into a class section.
 
 In the examples above, `animation` is a class section.
 
-A class section is a dictionary (also called a
+A class section is a _dictionary_ (also called a
 ["map" in YAML](http://yaml.org/spec/1.2/spec.html#id2759963) or
 [an "object" in JSON](https://json.org/)).
 
@@ -91,18 +91,23 @@ and
     animation:
       typename: BiblioPixelAnimations.matrix.ImageAnim
 
-## Value sections
-
-* `aliases`
-* `numbers`
-* `path`
-* `run`
-* `shape`
-
 ## Class sections
 
-* `animation`
-* `controls`
-* `driver`
-* `drivers`
-* `layout`
+* `animation`: The class that actually animates the lights.
+* `controls`: Classes that use external input to control parts of
+  the project.
+* `driver`: The output driver for the hardware or simulator
+* `drivers`: Used if there's more than one driver.  If the `drivers` section is
+  non-empty, the `driver` section becomes a template for `drivers`.
+* `layout`: How the lights are laid out geometrically.
+
+## Value sections
+
+* `aliases`: Aliases are a shorthand to save typing.
+* `numbers`: Select between plain old Python lists and faster numpy lists
+* `path`: Elements in path are added to your `PYTHONPATH` to allow you to load
+  your own libraries.
+* `run`: This controls how the topmost animation is run - how fast, how many
+  times, etc.
+* `shape`: The shape of the layout - `length` for strips, `[width, height]` for
+matrices and `[x, y, z]` for cubes.
