@@ -107,11 +107,11 @@ one go into each section in more detail.
 
 ## Class sections
 
-* `animation`: The class that actually animates the lights.
 * `driver`: The output driver for the hardware or simulator
 * `drivers`: Used if there's more than one driver.  If the `drivers` section is
   non-empty, the `driver` section becomes a template for `drivers`.
 * `layout`: How the lights are laid out geometrically.
+* `animation`: The class that actually animates the lights.
 * `controls`: Classes that use external input to control parts of
   the project.
 
