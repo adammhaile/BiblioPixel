@@ -59,6 +59,14 @@ Project files have up to ten sections.  The most important sections are
 * `shape` shows how your lights are laid out in 1, 2, or 3 dimensions
 * `driver` configures the hardware driver that controls the actual lights
 
+_Class sections_ are Python objects.  There are exactly four class sections:
+`animation`, `controls`, `drivers` and `layout`.  Each section has a _type_
+which defines what it does and which parameters can be set on it.
+
+Nearly all the excitement in BiblioPixel is in the class sections. BiblioPixel
+comes with a large number of predefined animations, controls, drivers and
+layouts, and it's quite easy to write your own.
+
 _Value sections_ contain simple things like strings, numbers, lists, or
 dictionaries.  In the examples above, `shape` and `run` are value sections.
 
@@ -66,17 +74,40 @@ Value sections always have the same possible parameters in every project.  For
 example, the `run` section can always have the `fps` ("frames per second")
 parameter.
 
-_Class sections_ represent Python data types.  In the examples above,
-`animation` is a class section.  BiblioPixel comes with many different possible
-data types for each class section, or programmers can write their own classes in
-Python without too much difficulty.
+But class sections have different parameters based on their type.
 
-Unlike value sections, a class section's parameters depend on the data
-type for that class.
+For example, many animations have no parameters at all and do exactly one
+thing.  An example is `bibliopixel.animation.tests.StripChannelTest`, which can
+only be used like this:
 
-A class section has a special parameter named `typename` which identifies the
-actual Python class to use for that section. That class is then constructed in
-Python using the other parameters from the class section.
+    # This animation runs a simple test on a strip of 10 pixels
+
+    shape: 10
+    animation: bibliopixel.animation.tests.StripChannelTest
+
+
+On the other hand, the `sequence` animation requires a parameter `animations`,
+a list of animations that are played in sequence.  It also has an optional
+parameter `length` which sets the length of each subsequence.
+
+    # This animation runs four animations, each for two seconds, in a loop
+    # and displays the result on a 32x32 pixel display.
+
+    shape: [32, 32]
+
+    animation:
+        typename: sequence
+        length: 2
+        animations:
+            - BiblioPixelAnimations.matrix.ImageAnim
+            - BiblioPixelAnimations.matrix.ImageShow
+            - BiblioPixelAnimations.matrix.ImageDissolve
+            - BiblioPixelAnimations.matrix.ScreenGrab
+
+
+A class section has a special parameter named `typename` which is the name of
+the Python class for that section. The remaining parameters in the class section
+are used to construct the actual object.
 
 For example, in the last example above,
 
