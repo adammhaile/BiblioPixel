@@ -1,7 +1,7 @@
 # How to write a BiblioPixel Project
 
-A BiblioPixel project is a document that describes the different parts of a
-BiblioPixel Lighting System project in a text form that humans can read,
+A BiblioPixel project is a text file that describes the different parts of a
+BiblioPixel Lighting System project in a form that humans can easily read,
 understand and edit.
 
 ## Projects are text files written in either [YAML](https://yaml.org) or [JSON](https://json.org)
@@ -9,19 +9,20 @@ understand and edit.
 BiblioPixel projects are data files, written in one of two human-readable
 formats, YAML or in JSON.
 
-In this document, we use YAML for our examples, because JSON is simply more
-wordy, but many automated tools write JSON and some people prefer it, so we
-support it completely.
+In this document, we use YAML for most of the examples.
 
 ## Examples:
 
-**Example:** a very simple project file written in YAML
+**Example 1:** a very simple project file written in YAML
 
+```
     shape: 50
     animation: BiblioPixelAnimations.strip.Wave
+```
 
-**Example:** a slightly larger project file, written in JSON
+**Example 2:** a slightly larger project file, written in JSON
 
+```
     {
         "shape": [32, 32]
 
@@ -34,9 +35,11 @@ support it completely.
             "imagePath": "/Users/tom/Documents/giphy-zoom.gif"
         }
     }
+```
 
-**Example:** the same project file, written in YAML
+**Example 3:** the same project file, written in YAML
 
+```
     shape: [32, 32]
 
     run:
@@ -45,96 +48,94 @@ support it completely.
     animation:
       typename: BiblioPixelAnimations.matrix.ImageAnim
       imagePath: /Users/tom/Documents/giphy-zoom.gif
+```
 
-## A project file is made up of _sections_, which have _parameters_.
+## A project file is made up of _sections_, which have _fields_.
 
 In the project files above, there are three sections - `shape`, `run`,
-and `animation`.  Sections can have parameters - for example, the `run` section
-above has the parameter `fps: 60`.
+and `animation`.  Sections can have fields - for example, the `run` section
+above has the field `fps: 60`.
 
-Project files have up to ten sections.  The most important sections are
-`animation`, `shape`, and `driver` which appear is almost every project:
+Project files have nine sections, many of them optional.  The most important
+sections are `animation`, `shape`, and `driver`, which appear in almost every
+project:
 
 * `animation` describes how your lights are animated
 * `shape` shows how your lights are laid out in 1, 2, or 3 dimensions
 * `driver` configures the hardware driver that controls the actual lights
 
-_Class sections_ are Python objects.  There are exactly four class sections:
-`animation`, `controls`, `drivers` and `layout`.  Each section has a _type_
-which defines what it does and which parameters can be set on it.
+_Class sections_ are Python objects.  There are four class sections:
+`animation`, `controls`, `drivers` and `layout`.
 
-Nearly all the excitement in BiblioPixel is in the class sections. BiblioPixel
-comes with a large number of predefined animations, controls, drivers and
-layouts, and it's quite easy to write your own.
+Each class section has a special _typename_ which defines what the Python object
+in that section does, and which fields can be set on it.  Typenames let you
+load not just BiblioPixel code, but your own code
+
+
+Nearly all the excitement in BiblioPixel is in the class sections!  BiblioPixel
+comes with a large number of predefined Animations, Controls, Drivers and
+Layouts, and you can put them together and customize them simply by writing a
+Project, without any programming.
+
+More, if you know a little Python you can extend them or modify a copy, or just
+write your own from scratch.
+
 
 _Value sections_ contain simple things like strings, numbers, lists, or
-dictionaries.  In the examples above, `shape` and `run` are value sections.
+dictionaries.  The five value sections are `aliases`, `numbers`, `path`, `run`,
+and `shape`.
 
-Value sections always have the same possible parameters in every project.  For
-example, the `run` section can always have the `fps` ("frames per second")
-parameter.
+# Fields
 
-But class sections have different parameters based on their type.
+Each section has a list of _fields_ - values that you can set.
 
-For example, many animations have no parameters at all and do exactly one
-thing.  An example is `bibliopixel.animation.tests.StripChannelTest`, which can
-only be used like this:
+In Example 2 and 3 above, the `run` section has the field `fps` with value
+`60` (fps meaning "frames per second"), and the `animation` section has the
+field `imagePath` with value `/Users/tom/Documents/giphy-zoom.gif `.
 
-    # This animation runs a simple test on a strip of 10 pixels
+A value section always has the same fields - for example, the `run` section
+always has the `fps` field in any project.
 
+Each class section has a special field named `typename` which is the name
+of its Python class.
+
+And then each class section has _different_ fields depending on that
+typename.
+
+For example, many animations have no fields at all and do exactly one thing.
+
+An example is the animation with the typename `.tests.StripChannelTest`.
+
+
+**Example 4**:  An animation that runs a simple test on a strip of 10 pixels
+
+```
     shape: 10
-    animation: bibliopixel.animation.tests.StripChannelTest
+    animation:
+      typename: .tests.StripChannelTest
+```
 
-
-On the other hand, the `sequence` animation requires a parameter `animations`,
+On the other hand, the `sequence` animation requires a field `animations`,
 a list of animations that are played in sequence.  It also has an optional
-parameter `length` which sets the length of each subsequence.
+field `length` which sets the length of each subsequence.
 
-    # This animation runs four animations, each for two seconds, in a loop
-    # and displays the result on a 32x32 pixel display.
+**Example 5**:  This animation runs four animations, each for two seconds, in a
+  loop, and displays the result on a 32x32 pixel display.
 
+```
     shape: [32, 32]
 
     animation:
-        typename: sequence
+        typename: .sequence
         length: 2
         animations:
             - BiblioPixelAnimations.matrix.ImageAnim
             - BiblioPixelAnimations.matrix.ImageShow
             - BiblioPixelAnimations.matrix.ImageDissolve
             - BiblioPixelAnimations.matrix.ScreenGrab
+```
 
-
-A class section has a special parameter named `typename` which is the name of
-the Python class for that section. The remaining parameters in the class section
-are used to construct the actual object.
-
-For example, in the last example above,
-
-    animation:
-      typename: BiblioPixelAnimations.matrix.ImageAnim
-      imagePath: /Users/tom/Documents/giphy-zoom.gif
-
-results in running Python code like this:
-
-    project.animation = BiblioPixelAnimations.matrix.ImageAnim(
-       imagePath='/Users/tom/Documents/giphy-zoom.gif')
-
-For convenience, if a class section is just a string, that string is used as a
-`typename`. For example, these two projects mean exactly the same thing:
-
-    animation: BiblioPixelAnimations.matrix.ImageAnim
-
-and
-
-    animation:
-      typename: BiblioPixelAnimations.matrix.ImageAnim
-
-# The sections
-
-Here's a quick summary of what each section does.  The documents following this
-one go into each section in more detail.
-
+# A summary of the sections
 
 ## Class sections
 

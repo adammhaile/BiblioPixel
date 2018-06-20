@@ -1,6 +1,6 @@
 # The `run` section
 
-`run` is a value section with nine optional parameters.
+`run` is a value section with nine optional fields:
 
 * `amt` (default `1`): Frame interval - the number of frames between individual
   updates
@@ -19,16 +19,22 @@
 
 1.  Run forever at 30 frames per second (fps)
 
+```
     run:
-      fps: 30
+    fps: 30
+```
 
 2.  Run for two seconds at 10 fps
 
+```
     run:
       seconds: 2
       fps: 10
+```
 
-2.  Run three times
+3.  Run three times
 
+```
     run:
       max_cycles: 3
+```
